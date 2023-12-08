@@ -1,5 +1,5 @@
 from rest_framework.views import APIView
-from rest_framework import status, generics
+from rest_framework import status, generics, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -40,5 +40,10 @@ class CatList(generics.ListCreateAPIView):
 
 
 class CatDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Cat.objects.all()
+    serializer_class = CatSerializer
+
+
+class CatViewSet(viewsets.ModelViewSet):
     queryset = Cat.objects.all()
     serializer_class = CatSerializer
